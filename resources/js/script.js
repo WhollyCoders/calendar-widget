@@ -25,5 +25,35 @@ nextMonth.addEventListener("click", displayNextMonth);
 
 
 
+//Build Calendar Body
+//Create Table Element
+var tableElement            = document.createElement("table");
+
+//Set Table Class to .calendar-body
+tableElement.setAttribute("class", "calendar-body");
+
+//Create Calendar Head
+var tableHeaderRowElement   = document.createElement("tr");
+
+//Set Table Header Row Class to .calendar-head
+tableHeaderRowElement.setAttribute("class", "calendar-head");
+
+//Loop through days of the week and INSERT <th> data for Table Header Row
+for(var i = 0; i < day.length; i++){
+    
+    var tableHeaderDataElement  = document.createElement("th");
+    tableHeaderDataElement.setAttribute("class", "dayLabel");
+    var headerText              = day[i];
+    var tableHeaderText         = document.createTextNode(headerText);
+    tableHeaderDataElement.appendChild(tableHeaderText);
+    tableHeaderRowElement.appendChild(tableHeaderDataElement);
+    
+}
+
+var tableElementDOM = document.getElementsByTagName("table")[0];
+var tableBody = document.getElementsByTagName("tbody")[0];
+
+tableElementDOM.appendChild(tableHeaderRowElement);
+
 
 
