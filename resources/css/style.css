@@ -65,11 +65,15 @@ body{
     color: #eee;
 }
 
+.day{
+    border: 1px solid #ddd;
+}
+
 .current{
     background-color: #000;
     color: #fff;
     border-radius: 50%;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     font-weight: bold;
 }
 
