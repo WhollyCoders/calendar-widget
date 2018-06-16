@@ -5,27 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Calendar Widget</title>
-  <link rel="stylesheet" href="./resources/css/style.css">
-  <script src="./resources/js/library.js"></script>
-  <script src="./resources/js/day.js"></script>
-  <script src="./resources/js/month.js"></script>
-  <script src="./resources/js/Calendar.js"></script>
 </head>
 <body>
-<div class="calendar">
+  <div class="wrapper" id="calendar">
     <div class="calendar-header">
-        <div class="control-button" id="previous">&#12296;</div>
-        <div class="calendar-label">
-            <div class="label-item" id="month"></div>
-            <div class="label-item" id="year"></div>
-        </div>
-        <div class="control-button" id="next">&#12297;</div>
+      <div class="calendar-control" id="previous-month"><a href="#"><</a></div>
+      <div class="calendar-month-year">
+        <div class="calendar-label" id="month">Month</div>
+        <div class="calendar-label" id="year">Year</div>
+      </div>
+      <div class="calendar-control" id="next-month"><a href="#">></a></div>
     </div>
-    <table class="calendar-body">
+    <table id="calendar-body">
+      
+      <thead id="calendar-body-head">
+
+          <!-- Seven Days of week HEAD goes here -->
+
+      </thead>
+      <tbody id="days-of-month">
+
+        <!-- Days of the month goes here -->
+        <!-- There will be multiple rows of Days
+        The first row is generated unique to the rest of the rows -->
+
+      </tbody>
 
     </table>
-</div>
-<!--<script src="./resources/js/script.js"></script>-->
-<script src="./resources/js/buildCalendar.js"></script>
+  </div>
 </body>
 </html>
