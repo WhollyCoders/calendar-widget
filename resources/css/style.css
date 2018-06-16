@@ -1,0 +1,55 @@
+/*Reset CSS*/
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/*Default Styles*/
+html,
+body{
+  background-color: dodgerBlue;
+  font-family: helvetica;
+  font-size: 16px;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+    padding: 1rem;
+}
+.wrapper{
+  background-color: #fff;
+  width: 300px;
+  height: auto;
+  margin: 2rem auto;
+  border-radius: 0.75rem;
+}
+
+/*Calendar Header Styles*/
+.calendar-header{
+    display: flex;
+    text-align: center;
+}
+
+.calendar-month-year{
+    flex-basis: 50%;
+    font-family: monospace;
+}
+
+.calendar-label{
+    margin: 0.5rem;
+    text-transform: uppercase;
+}
+
+.calendar-control{
+    flex-basis: 25%;
+    font-size: 1.5rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.calendar-control a:hover{
+    background-color: #000;
+    color: #fff;
+}
