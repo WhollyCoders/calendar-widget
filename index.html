@@ -5,34 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Calendar Widget</title>
+  <script src="./resources/js/data.js"></script>
+  <script src="./resources/js/library.js"></script>
   <link rel="stylesheet" href="./resources/css/style.css">
 </head>
 <body>
-  <div class="wrapper" id="calendar">
-    <div class="calendar-header">
-      <div class="calendar-control" id="previous-month"><a href="#">&lt;</a></div>
-      <div class="calendar-month-year">
-        <div class="calendar-label" id="month">Month</div>
-        <div class="calendar-label" id="year">Year</div>
-      </div>
-      <div class="calendar-control" id="next-month"><a href="#">&gt;</a></div>
+  <div class="wrapper">
+      
+    <div id="calendar">
+        <div class="calendar-header">
+          <div class="calendar-control" id="previous-month"><a href="#">&lt;</a></div>
+          <div class="calendar-month-year">
+            <div class="calendar-label" id="month">Month</div>
+            <div class="calendar-label" id="year">Year</div>
+          </div>
+          <div class="calendar-control" id="next-month"><a href="#">&gt;</a></div>
+        </div>
+        <table id="calendar-body">
+
+          <thead id="calendar-body-head">
+
+              <!-- Seven Days of week HEAD goes here -->
+
+          </thead>
+          <tbody id="days-of-month">
+
+            <!-- Days of the month goes here -->
+            <!-- There will be multiple rows of Days
+            The first row is generated unique to the rest of the rows -->
+
+          </tbody>
+
+        </table>
     </div>
-    <table id="calendar-body">
-
-      <thead id="calendar-body-head">
-
-          <!-- Seven Days of week HEAD goes here -->
-
-      </thead>
-      <tbody id="days-of-month">
-
-        <!-- Days of the month goes here -->
-        <!-- There will be multiple rows of Days
-        The first row is generated unique to the rest of the rows -->
-
-      </tbody>
-
-    </table>
+      
   </div>
+<script src="./resources/js/Calendar.js"></script>
+<script src="./resources/js/script.js"></script>
 </body>
 </html>
