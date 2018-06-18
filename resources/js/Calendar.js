@@ -1,9 +1,17 @@
+//Calendar Data Object
+
+var data = {
+    "day": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
+    "month": ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"],
+    "daysInMonth": [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+};
+
 // Calendar Object Literal
 var Calendar        = {
     "data":{
-        "day":day,
-        "month": month,
-        "daysInMonth": daysInMonth,
+        "day":data.day,
+        "month": data.month,
+        "daysInMonth": data.daysInMonth,
         "today": function(){
             var Today = new Date();
             return Today;
@@ -18,9 +26,10 @@ var Calendar        = {
         }
     },
     "initialize": function(){
-        console.log(Today);
+        console.log(Calendar.data.today());
         Calendar.get.monthLabel().innerHTML = Calendar.display.defaultMonth();
         Calendar.get.yearLabel().innerHTML  = Calendar.display.defaultYear();
+        Calendar.reset();
         Calendar.display.new();
         
     },
@@ -171,14 +180,17 @@ var Calendar        = {
         }
     },
     "get":{
-        "monthLabel": function(){
-            
-            return document.getElementById("month");
-        },
-        "yearLabel": function(){
-            
-            return document.getElementById("year");
-            
+        "control":{
+            "previousMonth": function(){
+                
+                return document.getElementById("previous-month");
+                
+            },
+            "nextMonth": function(){
+                
+                return document.getElementById("next-month");
+                
+            },
         },
         "currentDate": function(){
             
@@ -187,25 +199,27 @@ var Calendar        = {
             
             return currentDate;
             
-        },
-        "currentMonth":function(){
+        },        
+        "currentMonth": function(){
+            
             return Calendar.get.monthLabel().innerHTML;
-        },
+            
+        },        
         "currentYear": function(){
+            
             return parseInt(Calendar.get.yearLabel().innerHTML);
+            
         },
-        "previousMonth": function(){
-            console.log("Return Previous Month...");
-        },
-        "nextMonth": function(){
-            console.log("Return Next Month...");
+        "emptyCells": function(){
+            
+            return Calendar.get.firstDayIndex();
+            
         },
         "firstDayIndex": function(){
-            var month           = Calendar.get.currentMonth();
-            var year            = Calendar.get.currentYear();
-            var newDateString   = month+" "+year;
+            
             var firstDayIndex   = Calendar.get.newDate().getDay();
             return firstDayIndex;
+            
         },
         "firstRowData": function(){
             var emptyCells      = Calendar.get.emptyCells();
@@ -213,21 +227,12 @@ var Calendar        = {
             
             return [emptyCells, firstRowDays];
         },
-        "emptyCells": function(){
-            return Calendar.get.firstDayIndex();
-        },
         "firstRowDays": function(){
             
             var emptyCells = Calendar.get.emptyCells();
             var firstRowDays = 7 - emptyCells;
             
             return firstRowDays;
-        },
-        "fullRows": function(){
-            
-            //Get Full Calendar Rows
-            return Math.floor((Calendar.get.totalDaysInMonth() - Calendar.get.firstRowDays()) / 7);
-            
         },
         "firstStartingDay": function(){
             
@@ -237,16 +242,131 @@ var Calendar        = {
             return firstStartingDay;
             
         },
-        "minimumRows": function(){
-            return Calendar.get.fullRows() + 1;
+        "fullRows": function(){
+            
+            //Get Full Calendar Rows
+            return Math.floor((Calendar.get.totalDaysInMonth() - Calendar.get.firstRowDays()) / 7);
+            
+        },
+        "isLeapYear": function(){
+            
+            var year = Calendar.get.currentYear();
+            if(year){
+                return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+            }
         },
         "lastRowDays": function(){
+            
             //Compute Last Row Days 
- 
-                return (Calendar.get.totalDaysInMonth() - Calendar.get.firstRowDays()) % 7;
+            return (Calendar.get.totalDaysInMonth() - Calendar.get.firstRowDays()) % 7;
 
         },
+        "minimumRows": function(){
+            
+            return Calendar.get.fullRows() + 1;
+            
+        },
+        "monthData":{
+            
+            "previous": function(){},
+            "next": function(){}
+            
+        },
+        "monthByIndex": function(monthIndex){
+            
+            return Calendar.data.month[monthIndex];
+        },
+        "monthIndex": function(){
+            
+            var currentMonth    = Calendar.get.currentMonth();
+            var monthIndex      = Calendar.data.month.indexOf(currentMonth);
+            
+            return monthIndex;
+        },
+        "monthLabel": function(){
+            
+            return document.getElementById("month");
+        },
+        "newDate": function(){
+
+            //Create New Date Object with newly created Month/Date String
+                var newDate = new Date(Calendar.get.newDateString());
+
+            return newDate;           
+        },
+        "newDateString": function(){
+
+            return Calendar.get.currentMonth()+" "+Calendar.get.currentYear();
+            
+        },
+        "next": function(){
+            
+            console.log("Returning Next Month...");
+
+            //Get Current Month
+            var currentMonth    = Calendar.get.currentMonth();
+
+            //Get IndexOf Current Month
+            var monthIndex      = Calendar.get.monthIndex();
+
+            //Get Current Year
+            var currentYear     = Calendar.get.currentYear();
+
+            //If IndexOf Current Month is [11] (Dec), the New Month Index is 0 and the New Year is Current Year + 1
+            if(monthIndex == 11){
+
+                    var newMonthIndex   = 0;
+                    var newMonth        = Calendar.get.monthByIndex(newMonthIndex);
+                    var newYear         = currentYear + 1;
+
+
+               }else{
+
+                    var newMonthIndex   = monthIndex + 1;
+                    var newMonth        = Calendar.get.monthByIndex(newMonthIndex);
+                    var newYear         = currentYear;
+
+               }
+
+            Calendar.set.label(newMonth, newYear);
+            Calendar.reset();
+            Calendar.display.new();
+        },
+        "previous": function(){
+
+            console.log("Returning Previous Month...");
+
+            //Get Current Month
+            var currentMonth    = Calendar.get.currentMonth();
+
+            //Get IndexOf Current Month
+            var monthIndex      = Calendar.get.monthIndex();
+
+            //Get Current Year
+            var currentYear     = Calendar.get.currentYear();
+
+            //If IndexOf Current Month is [0] (Jan), the New Month Index is 11 and the New Year is Current Year - 1
+            if(monthIndex == 0){
+
+                    var newMonthIndex   = 11;
+                    var newMonth        = Calendar.get.monthByIndex(newMonthIndex);
+                    var newYear         = currentYear - 1;
+
+
+               }else{
+
+                    var newMonthIndex   = monthIndex - 1;
+                    var newMonth        = Calendar.get.monthByIndex(newMonthIndex);
+                    var newYear         = currentYear;
+
+               }
+    
+    Calendar.set.label(newMonth, newYear);
+    Calendar.reset();
+    Calendar.display.new();
+        },
         "totalCalendarRows": function(){
+            
             //Compute Total Calendar Rows
  
                 if(Calendar.get.lastRowDays()){
@@ -260,41 +380,30 @@ var Calendar        = {
                    }
 
         },
-        "newDateString": function(){
-
-            return Calendar.get.currentMonth()+" "+Calendar.get.currentYear();
-            
-        },
-        "newDate": function(){
-
-            //Create New Date Object with newly created Month/Date String
-                var newDate = new Date(Calendar.get.newDateString());
-
-            return newDate;           
-        },
         "totalDaysInMonth": function(){
             
             //Get New Date Object
             var newDate         = Calendar.get.newDate();
             //Get Month Index
             var monthIndex      = newDate.getMonth();
-            var numDaysInMonth  = daysInMonth[monthIndex];
-            if(isLeapYear() && monthIndex == 1){
+            var numDaysInMonth  = data.daysInMonth[monthIndex];
+            if(Calendar.get.isLeapYear() && monthIndex == 1){
 
                 numDaysInMonth = numDaysInMonth + 1;
         
-       }
+            }
     
             return numDaysInMonth;
             
         },
-        "monthNameFromIndex": function(){
-    
-            return month[index];
+        "yearLabel": function(){
+            
+            return document.getElementById("year");
             
         }
     },
     "set":{
+        
         "newCalendarMonth":function(month){
             Calendar.get.monthLabel().innerHTML = month;
         },
@@ -309,6 +418,8 @@ var Calendar        = {
         }
     },
     "reset": function(){
+        
         var tableElement = document.getElementById("calendar-body").innerHTML = "";
+        
     }
 };
