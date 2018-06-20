@@ -1,95 +1,105 @@
 /*Reset CSS*/
-*{
-  margin: 0;
-  padding: 0;
-  border: 0;
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 /*Default Styles*/
+
 html,
-body{
-  background-color: dodgerBlue;
-  font-family: helvetica;
-  font-size: 16px;
+body {
+    background-color: dodgerBlue;
+    font-family: helvetica;
+    font-size: 16px;
 }
 
-a{
+a {
     text-decoration: none;
     color: #000;
     padding: 1rem;
 }
-.wrapper{
-  background-color: #fff;
-  width: 360px;
-  height: auto;
-  margin: 2rem auto;
-  border-radius: 0.75rem;
+
+.wrapper {
+    background-color: #fff;
+    width: 360px;
+    height: auto;
+    margin: 2rem auto;
+    border-radius: 0.75rem;
 }
 
-#calendar{
+#calendar {
     padding: 2rem 0;
     height: auto;
 }
 
 /*Calendar Header Styles*/
-.calendar-header{
+
+.calendar-header {
     display: flex;
     text-align: center;
 }
 
-.calendar-month-year{
+.calendar-month-year {
     flex-basis: 50%;
     font-family: monospace;
 }
 
-.calendar-label{
+.calendar-label {
     margin: 0.5rem;
     text-transform: uppercase;
 }
 
-.calendar-control{
+.calendar-control {
     flex-basis: 25%;
     font-size: 1.5rem;
     padding: 1rem;
     cursor: pointer;
 }
 
-.calendar-control a:hover{
+.calendar-control a:hover {
     background-color: #000;
     color: #fff;
 }
 
 /*Calendar Body Head Styles*/
-#calendar-body{
+
+#calendar-body {
     margin: 0.25rem auto;
     text-align: center;
+    padding-bottom: 0.5rem;
 }
 
-#calendar-body-head{
+#calendar-body-head {
     margin: 0 auto;
 }
 
-.dayLabel, .day{
-    padding: 0.5rem;
+.dayLabel,
+.day {
+    padding: 0.3rem;
 }
 
-.dayLabel{
+.dayLabel {
     text-transform: capitalize;
     background-color: #333;
     color: #eee;
     font-family: monospace;
+    font-size: 0.8rem;
 }
 
-.day{
-    border: 1px solid #ddd;
+.day {
+    border: 1px solid #eee;
+    font-size: 0.70rem;
+    text-align: left;
+    padding: 0.1rem 1rem 1rem 0.1rem;
 }
 
-.current{
+.current {
     background-color: #000;
     color: #fff;
-    border-radius: 50%;
-    font-size: 0.9rem;
-    font-weight: bold;
+    /*    border-radius: 50%;*/
+    font-size: 0.75rem;
+    /*    font-weight: bold;*/
+    border: 1px solid #eee;
 }
-
-
