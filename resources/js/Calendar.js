@@ -281,9 +281,13 @@ var Calendar = {
     "set": {
         "newCalendarMonth": function (month) {
             Calendar.get.monthLabel().innerHTML = month;
+            Calendar.reset();
+            Calendar.display.new();
         },
         "newCalendarYear": function (year) {
             Calendar.get.yearLabel().innerHTML = year;
+            Calendar.reset();
+            Calendar.display.new();
         },
         "label": function (month, year) {
             Calendar.set.newCalendarMonth(month);
